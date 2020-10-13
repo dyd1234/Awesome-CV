@@ -161,7 +161,7 @@
 %                Configuration for fonts
 %-------------------------------------------------------------------------------
 % Set the FontAwesome font to be up-to-date.
-\newfontfamily\FA[Path=\@fontdir]{FontAwesome}
+% \newfontfamily\FA[Path=\@fontdir]{FontAwesome}
 % Set font for header (default is Roboto)
 \newfontfamily\headerfont[
   Path=\@fontdir,
@@ -188,8 +188,8 @@
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfontlight\color{graytext} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\bfseries\color{text} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{28pt}{1em}\headerfontlight\color{graytext} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{28pt}{1em}\headerfont\bfseries\color{text} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em}\headerfont\color{text} #1}}
@@ -237,6 +237,10 @@
 %-------------------------------------------------------------------------------
 %                Commands for personal information
 %-------------------------------------------------------------------------------
+% Define writer's work title
+% Usage: \worktitle{<worktitle>}
+\newcommand*{\worktitle}[1]{\def\@worktitle{#1}}
+
 % Define photo ID
 % Usage: \photo[circle|rectangle,edge|noedge,left|right]{<path-to-image>}
 \newcommand{\photo}[2][circle,edge,left]{%
@@ -447,6 +451,11 @@
     \ifthenelse{\equal{\@photoalign}{left}}{\raggedright\drawphoto}{}
   \end{minipage}
   \begin{minipage}[c]{\headertextwidth}
+    \ifthenelse{\isundefined{\@worktitle}}%
+    {}%
+    {%
+      \headerlastnamestyle{{}\acvHeaderNameDelim\@worktitle}\\%
+    }%
     \ifthenelse{\equal{#1}{L}}{\raggedright}{\ifthenelse{\equal{#1}{R}}{\raggedleft}{\centering}}
     \headerfirstnamestyle{\@firstname}\headerlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
     \\[\acvHeaderAfterNameSkip]%
