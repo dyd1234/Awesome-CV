@@ -8,7 +8,7 @@ I add the title option.
 
 ![](.github/1.png)
 
-If you like, you can use commend \worktitl{myTitle} and then you get
+If you like, you can use commend \worktitle{myTitle} and then you get
 a letter with title. 
 
 ![](.github/2.png)
